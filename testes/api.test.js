@@ -131,7 +131,10 @@ test('link inexistente mostra página no navegador e JSON para programas', async
   });
   assert.equal(navegador.status, 404);
   assert.match(navegador.headers.get('content-type'), /html/);
-  assert.match(await navegador.text(), /Link não encontrado/);
+  assert.match(navegador.headers.get('vary'), /Accept/i);
+  const html = await navegador.text();
+  assert.match(html, /<!doctype html>/i);
+  assert.match(html, /<h1>Link não encontrado<\/h1>/);
 
   const programa = await fetch(`${endereco}/naoexiste`);
   assert.equal(programa.status, 404);
