@@ -1,6 +1,7 @@
 import { randomInt } from 'node:crypto';
 
-const CARACTERES = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+// Sem l, I, 1, O, o e 0, que se confundem quando o código é digitado à mão.
+export const CARACTERES = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
 const TAMANHO = 7;
 
 export function gerarCodigo() {
