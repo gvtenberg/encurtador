@@ -1,0 +1,17 @@
+{
+  "name": "encurtador",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node backend/servidor.js",
+    "test": "node --test \"testes/*.test.js\""
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
