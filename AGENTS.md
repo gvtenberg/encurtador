@@ -66,3 +66,4 @@ When principles conflict or in doubt, **KISS and YAGNI come first**.
 - `dados/`: data access, with Node's built-in SQLite (`node:sqlite`); the database `encurtador.db` is created here.
 - `frontend/`: static web page served by the backend (`index.html`, `principal.js`, `api.js`, `estilo.css`, `icone.svg`) and the "link not found" page (`nao-encontrado.html`).
 - `testes/`: automated tests (Node's test runner).
+- `.github/workflows/verificar.yml`: GitHub Actions workflow that runs `npm ci` and `npm test` on push to `main` and on pull requests (skipped for docs-only changes).
