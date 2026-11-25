@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Encurtador de links</title>
+  <link rel="icon" href="/icone.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/estilo.css">
+  <script type="module" src="/principal.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Encurtador de links</h1>
+    <p class="apoio">Cole um link longo e receba um curto para compartilhar.</p>
+
+    <form id="formulario" novalidate>
+      <label for="campo-url">Link longo</label>
+      <div class="linha">
+        <input id="campo-url" type="url" placeholder="https://" maxlength="2048" autocomplete="off"
+          autocapitalize="off" spellcheck="false" aria-describedby="erro" autofocus>
+        <button id="botao-encurtar" type="submit">Encurtar</button>
+      </div>
+      <p id="erro" class="erro" role="alert"></p>
+    </form>
+
+    <section id="resultado" aria-labelledby="titulo-resultado" hidden>
+      <h2 id="titulo-resultado">Seu link curto</h2>
+      <div class="linha">
+        <a id="link-curto" target="_blank" rel="noopener noreferrer"></a>
+        <button id="botao-copiar" type="button">Copiar</button>
+      </div>
+    </section>
+    <p id="aviso" class="apoio" role="status"></p>
+    <noscript><p class="erro">Para encurtar links, ative o JavaScript no navegador.</p></noscript>
+  </main>
+</body>
+</html>

@@ -9,7 +9,7 @@ export function criarDocumentacao(enderecoBase) {
     openapi: '3.0.3',
     info: {
       title: 'Encurtador de links',
-      version: '0.1.1',
+      version: '0.2.0',
       description: 'API aberta e pública para encurtar links.',
     },
     servers: [{ url: enderecoBase }],

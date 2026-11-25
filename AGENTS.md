@@ -10,7 +10,7 @@ Technology: Node.js, Express and SQLite (database in a single file).
 
 ## Status
 - Done: backend API without authentication or request limit (create link and redirect), random 7-character codes without confusing characters, Swagger UI.
-- Not done: frontend.
+- Done: frontend (`frontend/`): page to create a link and copy it, light and dark theme, friendly "link not found" page.
 - Before publishing: set `ENDERECO_BASE`; decide on a request limit and CORS.
 - History: `docs/historico.md`.
 
@@ -64,4 +64,5 @@ When principles conflict or in doubt, **KISS and YAGNI come first**.
 ## File map
 - `backend/`: Express routes (`app.js`), business rules (`encurtador.js`, `codigo.js`, `validacaoUrl.js`), Swagger description (`documentacao.js`), startup (`servidor.js`).
 - `dados/`: data access, with Node's built-in SQLite (`node:sqlite`); the database `encurtador.db` is created here.
+- `frontend/`: static web page served by the backend (`index.html`, `principal.js`, `api.js`, `estilo.css`, `icone.svg`) and the "link not found" page (`nao-encontrado.html`).
 - `testes/`: automated tests (Node's test runner).

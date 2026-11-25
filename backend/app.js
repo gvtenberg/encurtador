@@ -1,7 +1,10 @@
+import { fileURLToPath } from 'node:url';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import { criarDocumentacao } from './documentacao.js';
 import { ErroUrlInvalida } from './validacaoUrl.js';
+
+const PASTA_FRONTEND = fileURLToPath(new URL('../frontend', import.meta.url));
 
 // Erros causados por quem enviou o pedido, por código HTTP.
 const MENSAGENS_PEDIDO_INVALIDO = {
@@ -21,6 +24,8 @@ export function criarApp({ encurtador, enderecoBase }) {
     res.status(201).json({ codigo, url, urlCurta: `${enderecoBase}/${codigo}` });
   });
 
+  app.use(express.static(PASTA_FRONTEND));
+
   app.get('/:codigo', (req, res, next) => {
     const url = encurtador.buscarUrl(req.params.codigo);
     if (url === null) {
@@ -31,7 +36,12 @@ export function criarApp({ encurtador, enderecoBase }) {
   });
 
   app.use((req, res) => {
-    res.status(404).json({ erro: 'Link não encontrado.' });
+    const responderJson = () => res.json({ erro: 'Link não encontrado.' });
+    res.status(404).format({
+      json: responderJson,
+      html: () => res.sendFile('nao-encontrado.html', { root: PASTA_FRONTEND }),
+      default: responderJson,
+    });
   });
 
   // O Express só reconhece o tratador de erros se ele tiver quatro parâmetros.

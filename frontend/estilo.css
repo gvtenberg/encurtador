@@ -1,0 +1,71 @@
+:root {
+  color-scheme: light dark;
+  --fundo: light-dark(#f6f8f7, #121716);
+  --campo: light-dark(#ffffff, #1b2220);
+  --texto: light-dark(#18211f, #e8eeec);
+  --texto-apoio: light-dark(#52605c, #a3b1ad);
+  --borda: light-dark(#7b8985, #71807b);
+  --destaque: light-dark(#0b6b5d, #5fd0bb);
+  --texto-destaque: light-dark(#ffffff, #0b1f1b);
+  --erro: light-dark(#b3261e, #ffb4ab);
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: var(--fundo);
+  color: var(--texto);
+  font: 1rem/1.5 system-ui, sans-serif;
+}
+
+main { width: 100%; max-width: 36rem; }
+h1 { margin: 0; font-size: 2rem; line-height: 1.2; text-wrap: balance; }
+h2 { margin: 2rem 0 .5rem; font-size: 1rem; }
+p { margin: .5rem 0; }
+.apoio { color: var(--texto-apoio); }
+.erro { color: var(--erro); }
+.erro:empty, .apoio:empty { margin: 0; }
+
+form { margin-top: 2rem; }
+label { display: block; margin-bottom: .5rem; font-weight: 600; }
+.linha { display: flex; gap: .75rem; align-items: center; }
+
+input, button, .botao {
+  min-height: 3rem;
+  padding: 0 1rem;
+  border-radius: .5rem;
+  font: inherit;
+}
+input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--borda);
+  background: var(--campo);
+  color: var(--texto);
+}
+input[aria-invalid="true"] { border-color: var(--erro); }
+button, .botao {
+  border: 0;
+  background: var(--destaque);
+  color: var(--texto-destaque);
+  font-weight: 600;
+  cursor: pointer;
+}
+.botao { display: inline-flex; align-items: center; margin-top: 1rem; text-decoration: none; }
+button:hover, .botao:hover { filter: brightness(1.1); }
+button:disabled { opacity: .6; cursor: wait; }
+:focus-visible { outline: 3px solid var(--destaque); outline-offset: 2px; }
+
+#link-curto { flex: 1; min-width: 0; overflow-wrap: anywhere; color: var(--destaque); font-size: 1.125rem; }
+
+@media (max-width: 30rem) {
+  .linha { flex-direction: column; align-items: stretch; }
+  input { flex: none; }
+}
