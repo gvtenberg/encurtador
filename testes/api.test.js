@@ -46,6 +46,13 @@ test('cria um link curto e redireciona para o original', async () => {
   assert.equal(acesso.headers.get('location'), original);
 });
 
+test('um código antigo, com caracteres que se confundem, continua redirecionando', async () => {
+  repositorio.inserir({ codigo: 'l1IO0o7', url: 'https://exemplo.com/antigo', criadoEm: 1 });
+  const acesso = await fetch(`${endereco}/l1IO0o7`, { redirect: 'manual' });
+  assert.equal(acesso.status, 302);
+  assert.equal(acesso.headers.get('location'), 'https://exemplo.com/antigo');
+});
+
 test('a mesma URL enviada duas vezes recebe códigos diferentes', async () => {
   const corpo = JSON.stringify({ url: 'https://exemplo.com' });
   const primeiro = await (await enviar(corpo)).json();
