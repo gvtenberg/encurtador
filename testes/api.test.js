@@ -113,3 +113,27 @@ test('mostra a documentação da API', async () => {
   const configuracao = await (await fetch(`${endereco}/api/docs/swagger-ui-init.js`)).text();
   assert.match(configuracao, /Encurtador de links/);
 });
+
+test('mostra a página inicial e seus arquivos', async () => {
+  const pagina = await fetch(endereco);
+  assert.equal(pagina.status, 200);
+  assert.match(await pagina.text(), /id="formulario"/);
+  for (const arquivo of ['estilo.css', 'principal.js', 'api.js', 'icone.svg']) {
+    const resposta = await fetch(`${endereco}/${arquivo}`);
+    assert.equal(resposta.status, 200, arquivo);
+    await resposta.arrayBuffer();
+  }
+});
+
+test('link inexistente mostra página no navegador e JSON para programas', async () => {
+  const navegador = await fetch(`${endereco}/naoexiste`, {
+    headers: { Accept: 'text/html,application/xhtml+xml,*/*;q=0.8' },
+  });
+  assert.equal(navegador.status, 404);
+  assert.match(navegador.headers.get('content-type'), /html/);
+  assert.match(await navegador.text(), /Link não encontrado/);
+
+  const programa = await fetch(`${endereco}/naoexiste`);
+  assert.equal(programa.status, 404);
+  assert.deepEqual(await programa.json(), { erro: 'Link não encontrado.' });
+});
