@@ -9,7 +9,7 @@ Website where the user pastes a long link and gets a short one; opening the shor
 Technology: Node.js, Express and SQLite (database in a single file).
 
 ## Status
-- Done: backend API without authentication or request limit (create link and redirect), random 7-character codes, Swagger UI.
+- Done: backend API without authentication or request limit (create link and redirect), random 7-character codes without confusing characters, Swagger UI.
 - Not done: frontend.
 - Before publishing: set `ENDERECO_BASE`; decide on a request limit and CORS.
 - History: `docs/historico.md`.
